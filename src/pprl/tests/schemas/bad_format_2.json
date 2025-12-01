@@ -16,17 +16,17 @@
       "ignored": true
     },
     {
-      "identifier": "source",
-      "description": "Short name that uniquely identifies the source of the records",
-      "ignored": true
-    },
-    {
       "identifier": "row_id",
       "description": "User-assigned value that uniquely identifies each record",
       "ignored": true
     },
     {
-      "identifier": "name",
+      "identifier": "source",
+      "description": "Short name that uniquely identifies the source of the records"
+      "ignored": true
+    },
+    {
+      "identifier": "first",
       "format": {
         "type": "string",
         "encoding": "utf-8",
@@ -44,7 +44,7 @@
       }
     },
     {
-      "identifier": "city",
+      "identifier": "last",
       "format": {
         "type": "string",
         "encoding": "utf-8",
@@ -56,7 +56,42 @@
           "n": 2
         },
         "strategy": {
+            "bitsPerFeature": 500
+        },
+        "hash": {"type": "doubleHash"}
+      }
+    },
+    {
+      "identifier": "sex",
+      "format": {
+        "type": "string",
+        "encoding": "utf-8",
+        "case": "upper"
+      },
+      "hashing": {
+        "comparison": {
+          "type": "exact",
+	  "values": ["male", "female"]
+        },
+        "strategy": {
             "bitsPerFeature": 200
+        }
+      }
+    },
+    {
+      "identifier": "dob",
+      "format": {
+        "type": "date",
+        "format": "%m/%d/%y"
+      },
+      "hashing": {
+        "comparison": {
+          "type": "ngram",
+          "n": 1,
+          "positional": true
+        },
+        "strategy": {
+          "bitsPerFeature": 300
         },
         "hash": {"type": "doubleHash"}
       }
@@ -77,54 +112,6 @@
             "bitsPerFeature": 200
         }
       }
-    },
-    {
-      "identifier": "zip",
-      "format": {
-        "type": "string",
-        "encoding": "utf-8",
-        "case": "upper"
-      },
-      "hashing": {
-        "comparison": {
-          "type": "ngram",
-          "n": 1,
-          "positional": true
-        },
-        "strategy": {
-            "bitsPerFeature": 200
-        }
-      }
-    },
-    {
-      "identifier": "dob",
-      "format": {
-        "type": "date",
-        "format": "%Y-%m-%d"
-      },
-      "hashing": {
-        "comparison": {
-          "type": "ngram",
-          "n": 1,
-          "positional": true
-        },
-        "strategy": {
-          "bitsPerFeature": 300
-        },
-        "hash": {"type": "doubleHash"}
-      }
-    },
-    {
-      "identifier": "sex",
-      "ignored": true
-    },
-    {
-      "identifier": "phone",
-      "ignored": true
-    },
-    {
-      "identifier": "ssn",
-      "ignored": true
     }
   ]
 }
